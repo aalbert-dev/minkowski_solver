@@ -34,4 +34,4 @@ def viz(dir_name):
     plt.show()
 
 
-viz('/home/arjun/minkowski_addition/set_dilation/src/')
+viz('/home/arjun/minkowski_addition/set_dilation/data/')
