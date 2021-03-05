@@ -33,17 +33,21 @@ vector<Point> compute_diff(vector<Point> a, vector<Point> b)
   return c;
 }
 
-vector<Point> compute_cspace(vector<Point> a, vector<Point> b)
+vector<Point> compute_cspace(vector<Point> a, vector<Point> b, bool rot = false)
 {
   vector<Point> sum_result;
   vector<Point> diff_result;
   if (a.size() > b.size())
   {
+    if (rot)
+      b = rotate_vector(b, b.at(0), PI/2);
     sum_result = compute_sum(a, b);
     diff_result = compute_diff(a, b);
   }
   else
   {
+    if (rot)
+      a = rotate_vector(a, a.at(0), PI/2);
     sum_result = compute_sum(b, a);
     diff_result = compute_diff(b, a);
   }

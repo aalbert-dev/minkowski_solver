@@ -29,7 +29,7 @@ Point rotate(Point a, float angle)
 
 Point rotate_about(Point a, Point b, float angle)
 {
-    return rotate(a - b, angle) + b;
+    return rotate(b - a, angle) + a;
 }
 
 vector<Point> rotate_vector(vector<Point> pts, Point ref, float angle)
@@ -55,7 +55,7 @@ vector<Point> interpolate(Point a, Point b, int num_points)
     float angle = atan((b.y - a.y) / (b.x - a.x));
     float dist = distance(a, b);
     float step = dist / num_points;
-    for (int i = 0; i < num_points; i++)
+    for (int i = 0; i < num_points + 1; i++)
     {
         float x = a.x + step * i * cos(angle);
         float y = a.y + step * i * sin(angle);
@@ -67,13 +67,16 @@ vector<Point> interpolate(Point a, Point b, int num_points)
 vector<Point> interp_lines(vector<Point> pts, int num_points)
 {
     vector<Point> interp_pts;
-    for (int i = 0; i < pts.size() -  1; i++)
+    for (int i = 0; i < pts.size() - 1; i++)
     {
         Point cur_point = pts.at(i);
         Point next_point = pts.at(i + 1);
         vector<Point> new_pts = interpolate(cur_point, next_point, num_points);
         interp_pts.insert(interp_pts.end(), new_pts.begin(), new_pts.end());
     }
-    interp_pts.push_back(pts.at(pts.size() - 1));
+    Point cur_point = pts.at(0);
+    Point next_point = pts.at(pts.size() - 1);
+    vector<Point> new_pts = interpolate(cur_point, next_point, num_points);
+    interp_pts.insert(interp_pts.end(), new_pts.begin(), new_pts.end());
     return interp_pts;
 }
