@@ -1,20 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <sstream>
-
-using namespace std;
-
-struct Point
-{
-    float x, y, z;
-    Point() : x(0), y(0){};
-    Point(float x, float y) : x(x), y(y), z(0){};
-    Point(float x, float y, float z) : x(x), y(y), z(z){};
-    bool operator==(const Point &other) { return x == other.x && y == other.y && z == other.z; }
-    Point operator+(const Point &other) { return Point(x + other.x, y + other.y, z + other.z); }
-    Point operator-(const Point &other) { return Point(x - other.x, y - other.y, z - other.z); }
-};
+#include </home/arjun/minkowski_addition/set_dilation/include/geometry.hpp>
 
 vector<Point> get_triangle(Point ref, float size)
 {
@@ -35,12 +19,19 @@ vector<Point> get_square(Point ref, float size)
     return square;
 }
 
+vector<Point> get_circle(Point ref, float radius, int num_points)
+{
+    vector<Point> circle;
+    float angle_increment = (2 * PI) / num_points;
+    for (int i = 0; i < num_points + 1; i++)
+    {
+        circle.push_back(ref + Point(cos(angle_increment * i) * radius, sin(angle_increment * i) * radius));
+    }
+    return circle;
+}
+
 vector<Point> get_obstacle(Point ref, float size)
 {
-    vector<Point> square;
-    square.push_back(ref + Point(0, 0));
-    square.push_back(ref + Point(0, size));
-    square.push_back(ref + Point(size, size));
-    square.push_back(ref + Point(size, 0));
-    return square;
+    vector<Point> obs;
+    return obs;
 }

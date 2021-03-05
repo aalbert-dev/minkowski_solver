@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <sstream>
 #include "../include/shapes.hpp"
 
@@ -32,6 +31,24 @@ vector<Point> compute_diff(vector<Point> a, vector<Point> b)
     }
   }
   return c;
+}
+
+vector<Point> compute_cspace(vector<Point> a, vector<Point> b)
+{
+  vector<Point> sum_result;
+  vector<Point> diff_result;
+  if (a.size() > b.size())
+  {
+    sum_result = compute_sum(a, b);
+    diff_result = compute_diff(a, b);
+  }
+  else
+  {
+    sum_result = compute_sum(b, a);
+    diff_result = compute_diff(a, b);
+  }
+  sum_result.insert(sum_result.end(), diff_result.begin(), diff_result.end());
+  return sum_result;
 }
 
 void write_shape_to_file(string f_name, vector<Point> shape)
