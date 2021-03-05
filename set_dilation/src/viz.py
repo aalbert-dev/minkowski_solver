@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def plot(plt, coords, color, style):
+    if not coords: return
     x_pts = []
     y_pts = []
     for i in range(0, len(coords) + 1):
@@ -24,6 +25,9 @@ def read(f_name):
 
 def viz(dir_name):
     plt.axes()
+    plt.title('Configuration space')
+    plt.xlabel('X meters')
+    plt.ylabel('Y meters')
     coords_1 = read(dir_name + 'results.txt')
     plot(plt, coords_1, 'r', 'solid')
     coords_2 = read(dir_name + 'shape_1.txt')
