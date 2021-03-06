@@ -50,6 +50,6 @@ vector<Point> get_obstacle(Point ref, float size, bool interp = false, int num_p
     corner_pts.push_back(ref + Point(size * 2.5, size * 3));
     corner_pts.push_back(ref + Point(size * 2.5, 0));
     if (interp)
-        return interp_lines(corner_pts, num_points);
+        return interp_lines(corner_pts, num_points, 1);
     return corner_pts;
 }

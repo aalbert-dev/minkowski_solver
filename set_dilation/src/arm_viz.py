@@ -40,7 +40,6 @@ def viz(dir_name):
     plot(plt, coords_2, 'g', 'dashed', ' Start')
     coords_3 = read(dir_name + 'angles_2.txt')
     plot(plt, coords_3, 'b', 'dashed', ' Goal')
-    # plt.axis('scaled')
     plt.xlim([0, np.pi])
     plt.ylim([0, np.pi])
     plt.show()

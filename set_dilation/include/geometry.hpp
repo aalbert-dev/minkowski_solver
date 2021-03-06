@@ -70,22 +70,23 @@ vector<Point> interpolate(Point a, Point b, int num_points)
     return pts;
 }
 
-vector<Point> interp_lines(vector<Point> pts, int num_points)
+vector<Point> interp_lines(vector<Point> pts, int num_points, int backtrace = 0)
 {
     vector<Point> interp_pts;
-    for (int i = 0; i < pts.size(); i++)
+    for (int i = 0; i < pts.size() - 1 + backtrace; i++)
     {
         Point cur_point = pts.at(i);
         Point next_point = pts.at((i + 1) % pts.size());
         vector<Point> new_pts;
-        if (i == pts.size() - 1)
-        {
-            new_pts = interpolate(next_point, cur_point, num_points);
-        }
-        else
-        {
-            new_pts = interpolate(cur_point, next_point, num_points);
-        }
+        new_pts = interpolate(cur_point, next_point, num_points);
+        // if (i == pts.size() - 1)
+        // {
+        //     new_pts = interpolate(next_point, cur_point, num_points);
+        // }
+        // else
+        // {
+        //     new_pts = interpolate(cur_point, next_point, num_points);
+        // }
 
         interp_pts.insert(interp_pts.end(), new_pts.begin(), new_pts.end());
     }
