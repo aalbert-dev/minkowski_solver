@@ -40,14 +40,14 @@ vector<Point> compute_cspace(vector<Point> a, vector<Point> b, bool rot = false)
   if (a.size() > b.size())
   {
     if (rot)
-      b = rotate_vector(b, b.at(0), PI/2);
+      b = rotate_vector(b, b.at(0), PI / 2);
     sum_result = compute_sum(a, b);
     diff_result = compute_diff(a, b);
   }
   else
   {
     if (rot)
-      a = rotate_vector(a, a.at(0), PI/2);
+      a = rotate_vector(a, a.at(0), PI / 2);
     sum_result = compute_sum(b, a);
     diff_result = compute_diff(b, a);
   }
@@ -64,4 +64,10 @@ void write_shape_to_file(string f_name, vector<Point> shape)
     results_file << curr_point.x << ", " << curr_point.y << ", " << curr_point.z << "\n";
   }
   results_file.close();
+}
+
+inline vector<Point> append(vector<Point> v1, vector<Point> v2)
+{
+  v1.insert(v1.end(), v2.begin(), v2.end());
+  return v1;
 }

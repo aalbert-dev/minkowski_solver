@@ -20,7 +20,7 @@ Point calculate_Ndof_arm_endpoint(Point ref, vector<float> joint_lengths, vector
     return Point(); // NOT YET IMPLEMENTED
 }
 
-vector<float> calculate_joint_angles(Point ref, Point endpoint, float joint_1_length, float joint_2_length)
+Point calculate_joint_angles(Point ref, Point endpoint, float joint_1_length, float joint_2_length)
 {
     Point rel_endpoint = endpoint - ref;
     float x = rel_endpoint.x;
@@ -28,5 +28,15 @@ vector<float> calculate_joint_angles(Point ref, Point endpoint, float joint_1_le
     float joint_2_opp_angle = acos((sqr(x) + sqr(y) - sqr(joint_1_length) - sqr(joint_2_length)) / (2 * joint_1_length * joint_2_length));
     float joint_2_angle = PI - joint_2_opp_angle;
     float joint_1_angle = asin((joint_2_length * sin(joint_2_opp_angle)) / (sqr(x) + sqr(y))) + atan2(y, x);
-    return {joint_1_angle, joint_2_angle};
+    return Point{joint_1_angle, joint_2_angle};
+}
+
+vector<Point> calculate_multiple_joint_angles(Point ref, vector<Point> endpoints, vector<float> joint_lengths)
+{
+    vector<Point> angles;
+    for (int i = 0; i < endpoints.size(); i++)
+    {
+        angles.push_back(calculate_joint_angles(ref, endpoints.at(i), joint_lengths.at(0), joint_lengths.at(1)));
+    }
+    return angles;
 }

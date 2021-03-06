@@ -1,4 +1,4 @@
-#include </home/arjun/minkowski_addition/set_dilation/include/geometry.hpp>
+#include </home/arjun/minkowski_addition/set_dilation/include/robot_arm.hpp>
 
 vector<Point> get_triangle(Point ref, float size, bool interp = false, int num_points = 2)
 {
@@ -41,8 +41,8 @@ vector<Point> get_obstacle(Point ref, float size, bool interp = false, int num_p
     corner_pts.push_back(ref + Point(0, size));
     corner_pts.push_back(ref + Point(size * 0.5, size));
     corner_pts.push_back(ref + Point(size * 0.5, size * 0.5));
-    corner_pts.push_back(ref + Point(size * 1.5, size * 0.5));
-    corner_pts.push_back(ref + Point(size * 1.5, size * 2.5));
+    corner_pts.push_back(ref + Point(size * 2, size * 0.5));
+    corner_pts.push_back(ref + Point(size * 2, size * 2.5));
     corner_pts.push_back(ref + Point(size * 0.5, size * 2.5));
     corner_pts.push_back(ref + Point(size * 0.5, size * 2));
     corner_pts.push_back(ref + Point(0, size * 2));

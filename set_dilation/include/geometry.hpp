@@ -49,7 +49,7 @@ vector<Point> rotate_vector(vector<Point> pts, Point ref, float angle)
     return new_pts;
 }
 
-float distance(Point a, Point b)
+inline float distance(Point a, Point b)
 {
     return sqrt(sqr(a.x - b.x) + sqr(a.y - b.y));
 }
