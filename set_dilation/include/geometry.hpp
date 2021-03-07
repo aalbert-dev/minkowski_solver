@@ -14,6 +14,7 @@ struct Point
     Point(float x, float y) : x(x), y(y), z(0){};
     Point(float x, float y, float z) : x(x), y(y), z(z){};
     bool operator==(const Point &other) { return x == other.x && y == other.y && z == other.z; }
+    bool operator!=(const Point &other) { return x != other.x || y != other.y; }
     Point operator+(const Point &other) { return Point(x + other.x, y + other.y, z + other.z); }
     Point operator-(const Point &other) { return Point(x - other.x, y - other.y, z - other.z); }
 };
