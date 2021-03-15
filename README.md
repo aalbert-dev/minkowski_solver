@@ -1,2 +1,2 @@
 # minkowski_addition
-Calculates the Minkowski sum (set dilation) of two vectors of Points 
+Calculates and visualizes the 3D configuration space for the motion planning of a 2 degree of freedom robot arm in a multi-agent environment. 
