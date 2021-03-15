@@ -35,6 +35,7 @@ def viz(dir_name):
     plot(plt, coords_2, 'g', 'dashed')
     coords_3 = read(dir_name + 'shape_2.txt')
     plot(plt, coords_3, 'b', 'dashed')
+    plt.scatter([0], [0], [10], color='r')
     plt.axis('scaled')
     plt.show()
 
