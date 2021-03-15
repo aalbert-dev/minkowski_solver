@@ -32,32 +32,41 @@ def get_cmap(n, name='hsv'):
     return plt.cm.get_cmap(name, n)
 
 
+def get_colors_from_angles(z_coords):
+    num_points = len(z_coords)
+    unique_z = []
+
+    for z in z_coords:
+        if z not in unique_z:
+            unique_z.append(z)
+    # print(num_points, len(unique_z))
+    z_length = num_points // len(unique_z)
+    color_seq = []
+    for i in range(0, num_points):
+        col_index = int(i / z_length)
+        color_seq.append(col_index)    
+    return color_seq
+
+
 def viz(dir_name):
     fig = plt.figure()
-
     ax = Axes3D(fig)
     coords = read(dir_name + 'poly_results_3d.txt')
     if not coords:
         return
+
     x_pts = []
     y_pts = []
     z_pts = []
     for i in range(0, len(coords) + 1):
         cur_x, cur_y, cur_z = coords[i % len(coords)]
-        cur_x = float(cur_x)
-        cur_y = float(cur_y)
-        cur_z = float(cur_z)
-        x_pts.append(cur_x)
-        y_pts.append(cur_y)
-        z_pts.append(cur_z)
-    sequence_containing_x_vals = x_pts
-    sequence_containing_y_vals = y_pts
-    sequence_containing_z_vals = z_pts
-    # num_angles = 4
-    # num_points = len(z_pts)
-    color_seq = [0 if i > 84241/2 else 1 for i in range(0, 84241)]
-    ax.scatter(sequence_containing_x_vals,
-               sequence_containing_y_vals, sequence_containing_z_vals, s=5, c=color_seq)
+        x_pts.append(float(cur_x))
+        y_pts.append(float(cur_y))
+        z_pts.append(float(cur_z))
+    color_seq = get_colors_from_angles(z_pts)
+    ax.scatter(x_pts, y_pts, z_pts, s=50
+    
+    , c=color_seq)
 
     plt.show()
 

@@ -82,21 +82,20 @@ vector<Point> compute_cspace_2d(vector<Point> a, vector<Point> b, bool negative 
   }
 }
 
-// vector<Point> compute_cspace_3d(vector<Point> a, vector<Point> b, vector<float> rots)
-// {
-//   vector<Point> results;
-//   for (auto &rot : rots)
-//   {
-//     vector<Point> sum_result;
-//     sum_result = compute_cspace_2d(a, b);
-//     for (int i = 0; i < sum_result.size(); i++)
-//     {
-//       sum_result.at(i).z = rot;
-//     }
-//     results.insert(sum_result.begin(), sum_result.end(), results.end());
-//   }
-//   return results;
-// }
+vector<Point> compute_cspace_3d(vector<vector<Point>> a, vector<Point> b, vector<float> rots)
+{
+  vector<Point> results;
+  for (int i = 0; i < a.size(); i++)
+  {
+    vector<Point> result = compute_cspace_2d(a[i], b);
+    for (int j = 0; j < result.size(); j++)
+    {
+      result.at(j).z = rots[i];
+    }
+    results.insert(results.end(), result.begin(), result.end());
+  }
+  return results;
+}
 
 inline vector<Point> append(vector<Point> v1, vector<Point> v2)
 {
