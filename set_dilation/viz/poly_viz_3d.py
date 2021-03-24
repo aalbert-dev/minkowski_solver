@@ -44,7 +44,7 @@ def get_colors_from_angles(z_coords):
     color_seq = []
     for i in range(0, num_points):
         col_index = int(i / z_length)
-        color_seq.append(col_index)    
+        color_seq.append(col_index)
     return color_seq
 
 
@@ -64,10 +64,11 @@ def viz(dir_name):
         y_pts.append(float(cur_y))
         z_pts.append(float(cur_z))
     color_seq = get_colors_from_angles(z_pts)
-    ax.scatter(x_pts, y_pts, z_pts, s=50
-    
-    , c=color_seq)
-
+    ax.scatter(x_pts, y_pts, z_pts, s=50, c=color_seq)
+    ax.set_xlabel('X Meters')
+    ax.set_ylabel('Y Meters')
+    ax.set_zlabel('Z Radians')
+    plt.title('Configuration space')
     plt.show()
 
 

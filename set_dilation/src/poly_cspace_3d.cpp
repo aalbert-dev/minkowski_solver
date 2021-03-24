@@ -1,9 +1,12 @@
 #include "/home/arjun/minkowski_addition/set_dilation/include/utils.hpp"
+/**
+ * 
+ **/
 
 int main()
 {
     vector<Point> results;
-    vector<float> angles = interp_angles(0, PI, 12);
+    vector<float> angles = interp_angles(0, PI, 6);
     cerr << angles.size();
     vector<vector<Point>> ego_poly;
     for (auto &angle : angles)
