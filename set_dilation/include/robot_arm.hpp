@@ -1,5 +1,47 @@
 #include </home/arjun/minkowski_addition/set_dilation/include/geometry.hpp>
 
+class Arm
+{
+public:
+    Arm(Point origin, float joint_1_length, float joint_2_length, vector<float> joint_1_range, vector<float> joint_2_range);
+    bool activate(float joint_1_angle, float joint_2_angle);
+    Point calculate_new_endpoint(float joint_1_angle, float joint_2_angle);
+    bool move_joint_1(float angle);
+    bool move_joint_2(float angle);
+    Point origin;
+    Point elbowpoint;
+    Point endpoint;
+    float joint_1_length;
+    float joint_2_length;
+    vector<Point> joint_1_pts;
+    vector<Point> joint_2_pts;
+    float joint_1_start_angle;
+    float joint_1_end_angle;
+    float joint_2_start_angle;
+    float joint_2_end_angle;
+
+private:
+    bool interp;
+};
+
+Arm::Arm(Point origin, float joint_1_length, float joint_2_length, vector<float> joint_1_range, vector<float> joint_2_range)
+{
+    // Arm::origin = origin;
+    this->joint_1_length = joint_1_length;
+    // Arm::joint_2_length = joint_2_length;
+    // Arm::joint_1_range = joint_1_length;
+    // Arm::joint_2_range = joint_2_range;
+};
+
+// bool Arm::activate(float joint_1_angle, float joint_2_angle)
+// {
+// }
+
+// Point Arm::calculate_new_endpoint(float joint_1_angle, float joint_2_angle)
+// {
+
+// }
+
 bool reachable(Point ref, vector<float> arm_joint_lengths, Point endpoint)
 {
     float sum_arm_lengths = 0;

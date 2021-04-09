@@ -39,7 +39,6 @@ def get_colors_from_angles(z_coords):
     for z in z_coords:
         if z not in unique_z:
             unique_z.append(z)
-    # print(num_points, len(unique_z))
     z_length = num_points // len(unique_z)
     color_seq = []
     for i in range(0, num_points):
